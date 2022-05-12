@@ -34,6 +34,8 @@
 #include <SFML/Graphics/Rect.hpp>
 #include <SFML/Graphics/Drawable.hpp>
 #include <vector>
+#include <boost/serialization/serialization.hpp>
+#include <boost/serialization/vector.hpp>
 
 
 namespace sf
@@ -180,6 +182,13 @@ private:
     ///
     ////////////////////////////////////////////////////////////
     void draw(RenderTarget& target, const RenderStates& states) const override;
+
+    friend class boost::serialization::access;
+    template<class Archive>
+    void serialize(Archive& ar, const unsigned int version) {
+        ar & m_vertices;
+        ar & m_primitiveType;
+    }
 
 private:
 

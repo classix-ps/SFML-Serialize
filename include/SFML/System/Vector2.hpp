@@ -29,6 +29,7 @@
 #include <cassert>
 #include <cmath>
 #include <type_traits>
+#include <boost/serialization/serialization.hpp>
 
 
 namespace sf
@@ -190,6 +191,12 @@ public:
     ////////////////////////////////////////////////////////////
     constexpr Vector2 cwiseDiv(const Vector2& rhs) const;
 
+    friend class boost::serialization::access;
+    template<class Archive>
+    void serialize(Archive& ar, const unsigned int version) {
+        ar & x;
+        ar & y;
+    }
 
     ////////////////////////////////////////////////////////////
     // Member data
