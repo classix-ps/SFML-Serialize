@@ -29,7 +29,6 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <SFML/Graphics/Export.hpp>
-#include <boost/serialization/serialization.hpp>
 
 
 namespace sf
@@ -90,15 +89,6 @@ public:
     static const Color Magenta;     //!< Magenta predefined color
     static const Color Cyan;        //!< Cyan predefined color
     static const Color Transparent; //!< Transparent (black) predefined color
-
-    friend class boost::serialization::access;
-    template<class Archive>
-    void serialize(Archive& ar, const unsigned int version) {
-        ar & r;
-        ar & g;
-        ar & b;
-        ar & a;
-    }
 
     ////////////////////////////////////////////////////////////
     // Member data

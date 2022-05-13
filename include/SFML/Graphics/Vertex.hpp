@@ -31,6 +31,7 @@
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/System/Vector2.hpp>
 #include <boost/serialization/serialization.hpp>
+#include <boost/serialization/split_member.hpp>
 
 
 namespace sf
@@ -42,6 +43,10 @@ namespace sf
 class Vertex
 {
 public:
+    template<class Archive>
+    void serialize(Archive& ar, const unsigned int version) {
+        ar & position;
+    }
 
     ////////////////////////////////////////////////////////////
     /// \brief Default constructor
@@ -91,13 +96,6 @@ public:
     ////////////////////////////////////////////////////////////
     constexpr Vertex(const Vector2f& thePosition, const Color& theColor, const Vector2f& theTexCoords);
 
-    friend class boost::serialization::access;
-    template<class Archive>
-    void serialize(Archive& ar, const unsigned int version) {
-        ar & position;
-        ar & color;
-        ar & texCoords;
-    }
 
     ////////////////////////////////////////////////////////////
     // Member data

@@ -43,6 +43,11 @@ template <typename T>
 class Vector2
 {
 public:
+    template<class Archive>
+    void serialize(Archive& ar, const unsigned int version) {
+        ar & x;
+        ar & y;
+    }
 
     ////////////////////////////////////////////////////////////
     /// \brief Default constructor
@@ -191,12 +196,6 @@ public:
     ////////////////////////////////////////////////////////////
     constexpr Vector2 cwiseDiv(const Vector2& rhs) const;
 
-    friend class boost::serialization::access;
-    template<class Archive>
-    void serialize(Archive& ar, const unsigned int version) {
-        ar & x;
-        ar & y;
-    }
 
     ////////////////////////////////////////////////////////////
     // Member data
